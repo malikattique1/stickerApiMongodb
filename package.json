@@ -1,6 +1,9 @@
 {
   "name": "nodejs-creating-restful-apis",
   "version": "1.0.0",
+  "engines": { 
+    "node": "v18.15.0",
+     "npm": "9.5.0" },
   "description": "",
   "main": "app2.js",
   "scripts": {
