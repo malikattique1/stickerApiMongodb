@@ -1,9 +1,9 @@
 {
   "name": "nodejs-creating-restful-apis",
   "version": "1.0.0",
-  "engines": {
-    "node" : "14.x"
-  },
+  "engines": { 
+    "node": "v18.15.0"
+   },
   "description": "",
   "main": "apptwo.js",
   "scripts": {
