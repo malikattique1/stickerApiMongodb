@@ -3,13 +3,13 @@
     "builds": [
       {
         "src": "apptwo.js",
-        "use": "@vercel/node"
+        "use": "@now/node"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/"
+        "dest": "apptwo.js"
       }
     ]
   }
