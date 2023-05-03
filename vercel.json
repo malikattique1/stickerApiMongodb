@@ -6,10 +6,10 @@
             "use": "@vercel/node"
         }
     ],
-        "routes": [
-                {
-                    "src": "/.*",
-                    "dest": "apptwo.js"
-                }
-        ]
-}
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ]
+  }
