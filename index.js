@@ -48,7 +48,7 @@ index.use('/api/sticker', StickerController);
 var StickerpackController = require(__root + 'api/stickerpack/StickerpackController');
 index.use('/api/stickerpack', StickerpackController);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT
 // index.listen(port, () => {
 //   console.log("server up and running on PORT :", port);
 // });
