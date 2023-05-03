@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "UserController": "file:./api/user/UserController",
+    "UserController": "1.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.16.1",
     "cors": "^2.8.5",
