@@ -5,10 +5,10 @@
     "node": "v18.15.0",
      "npm": "9.5.0" },
   "description": "",
-  "main": "app2.js",
+  "main": "apptwo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app2.js"
+    "start": "nodemon apptwo.js"
   },
   "author": "",
   "license": "ISC",
