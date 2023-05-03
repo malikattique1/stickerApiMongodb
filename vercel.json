@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "./apptwo.js",
+            "src": "*.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "apptwo.js"
+            "dest": "/"
         }
     ]
   }
