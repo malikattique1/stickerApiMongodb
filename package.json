@@ -2,9 +2,9 @@
   "name": "nodejs-creating-restful-apis",
   "version": "1.0.0",
   "description": "",
-  "main": "apptwo.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon apptwo.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
