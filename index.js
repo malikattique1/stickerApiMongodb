@@ -1,5 +1,10 @@
 // require("dotenv").config();
 require('dotenv').config({ path: './config.env' });
+// import mongoose from "mongoose";
+var mongoose = require('mongoose');
+// import "dotenv/config";
+
+
 
 var express = require('express');
 var index= express();
@@ -44,8 +49,25 @@ var StickerpackController = require(__root + 'api/stickerpack/StickerpackControl
 index.use('/api/stickerpack', StickerpackController);
 
 const port = process.env.PORT || 3000;
-index.listen(port, () => {
-  console.log("server up and running on PORT :", port);
+// index.listen(port, () => {
+//   console.log("server up and running on PORT :", port);
+// });
+
+mongoose.connect(process.env.MONGO_URI).then(() => {
+  console.log("Mongodb connected");
+  index.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
+  });
+}).catch((err) => {
+  console.log({ err });
+  process.exit(1);
 });
+
+
+
+
+
+
+
 
 module.exports = index;
