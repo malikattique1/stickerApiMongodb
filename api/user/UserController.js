@@ -2,14 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 
-var db = require('../../db');
-var User = require('./User');
+// var db = require('../../db');
+// var User = require('./User');
 
 
-var jwt = require('jsonwebtoken'); 
-var bcrypt = require('bcryptjs');
-var config = require('../../config'); 
-var VerifyToken = require(__root + 'auth/VerifyToken');
+// var jwt = require('jsonwebtoken'); 
+// var bcrypt = require('bcryptjs');
+// var config = require('../../config'); 
+// var VerifyToken = require(__root + 'auth/VerifyToken');
 
 
 // LOGIN
