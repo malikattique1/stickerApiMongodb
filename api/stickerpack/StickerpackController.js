@@ -10,7 +10,8 @@ var Stickerpack = require('./Stickerpack');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var config = require('../../config');
-var VerifyToken = require(__root + 'auth/VerifyToken');
+var VerifyToken = require('../../auth/VerifyToken');
+// var VerifyToken = require(__root + 'auth/VerifyToken');
 
 
 
@@ -67,7 +68,7 @@ uploadFile = function (req, res, next) {
         storage: storage,
         fileFilter: file_filter,
         limits: {
-            fileSize: 50000
+            fileSize: 50000000
         }
     })
         .fields([{ name: 'tray_icon', maxCount: 1 },
