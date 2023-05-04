@@ -39,14 +39,14 @@ index.get('/api', function (req, res) {
   res.status(200).send('API works.');
 });
 
-var UserController = require(__root + 'api/user/UserController');
-index.use('/api/user', UserController);
+// var UserController = require(__root + 'api/user/UserController');
+// index.use('/api/user', UserController);
 
-var StickerController = require(__root + 'api/sticker/StickerController');
-index.use('/api/sticker', StickerController);
+// var StickerController = require(__root + 'api/sticker/StickerController');
+// index.use('/api/sticker', StickerController);
 
-var StickerpackController = require(__root + 'api/stickerpack/StickerpackController');
-index.use('/api/stickerpack', StickerpackController);
+// var StickerpackController = require(__root + 'api/stickerpack/StickerpackController');
+// index.use('/api/stickerpack', StickerpackController);
 
 const port = process.env.PORT
 // index.listen(port, () => {
