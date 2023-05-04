@@ -36,7 +36,7 @@ index.use(function(req, res, next) {
 
 
 global.__root   = __dirname + '/'; 
-index.get('/api', function (req, res) {
+index.get('/', function (req, res) {
   res.status(200).send('API works.');
 });
 
