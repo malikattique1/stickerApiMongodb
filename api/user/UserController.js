@@ -2,14 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 
-// var db = require('../../db');
-// var User = require('./User');
+var db = require('../../db');
+var User = require('./User');
 
 
-// var jwt = require('jsonwebtoken'); 
-// var bcrypt = require('bcryptjs');
-// var config = require('../../config'); 
-// var VerifyToken = require(__root + 'auth/VerifyToken');
+var jwt = require('jsonwebtoken'); 
+var bcrypt = require('bcryptjs');
+var config = require('../../config'); 
+var VerifyToken = require(__root + 'auth/VerifyToken');
 
 
 
@@ -23,23 +23,23 @@ var router = express.Router();
 //         res.status(200).send(users);
 //     });
 // });
-// router.get('/', function (req, res) {
-//     User.find({}, function (err, users) {
-//         if (err) return res.status(500).send("There was a problem finding the users.");
-//         res.status(200).send(users);
-//     });
-// });
-router.get("/", async (req, res) => {
-    try {
-      res.json({
-        status: 200,
-        message: "Get data has successfully",
-      });
-    } catch (error) {
-      console.error(error);
-      return res.status(500).send("Server error");
-    }
-  });
+router.get('/', function (req, res) {
+    User.find({}, function (err, users) {
+        if (err) return res.status(500).send("There was a problem finding the users.");
+        res.status(200).send(users);
+    });
+});
+// router.get("/", async (req, res) => {
+//     try {
+//       res.json({
+//         status: 200,
+//         message: "Get data has successfully",
+//       });
+//     } catch (error) {
+//       console.error(error);
+//       return res.status(500).send("Server error");
+//     }
+//   });
 
 
 // GETS A SINGLE USER FROM THE DATABASE
