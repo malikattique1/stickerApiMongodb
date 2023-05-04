@@ -13,12 +13,14 @@
     }
   ],
   "routes": [
-    { "src": "/api/user/.*", "dest": "/api/user/UserController" },
-    { "src": "/api/sticker/.*", "dest": "/api/sticker/StickerController" },
-    { "src": "/api/stickerpack/.*", "dest": "/api/stickerpack/StickerpackController" },
-    { "src": "/upload/(.*)", "dest": "/upload/$1" },
-    { "src": "/api", "dest": "/api/index.js" },
-    { "src": "/(.*)", "dest": "/index.js" }
+    {
+      "src": "/api/user/(.*)",
+      "dest": "/api/user/UserController.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.js"
+    }
   ],
   "env": {
     "MONGO_URI": "mongodb+srv://attiqueurrehmannew12:5251050@cluster0.ifmxcrl.mongodb.net/Stickerapp?retryWrites=true&w=majority",
