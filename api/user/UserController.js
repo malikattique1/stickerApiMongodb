@@ -5,9 +5,8 @@ var router = express.Router();
 var db = require('../../db');
 var User = require('./User');
 
-
+var bcrypt = require('bcryptjs');
 // var jwt = require('jsonwebtoken'); 
-// var bcrypt = require('bcryptjs');
 // var config = require('../../config'); 
 // var VerifyToken = require(__root + 'auth/VerifyToken');
 
@@ -92,6 +91,20 @@ router.get('/', function (req, res) {
 //             res.status(200).send(user);
 //         });
 // });
+
+router.post('/register', function (req, res) {
+    var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+    User.create({
+        name: req.body.name,
+        email: req.body.email,
+        // password : req.body.password
+        password: hashedPassword
+    },
+        function (err, user) {
+            if (err) return res.status(500).send("There was a problem adding the information to the database.");
+            res.status(200).send(user);
+        });
+});
 
 
 
