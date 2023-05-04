@@ -1,9 +1,6 @@
 
 
 
-
-
-
 {
   "version": 2,
   "builds": [
@@ -13,13 +10,24 @@
     }
   ],
   "routes": [
+    { "src": "/api/user/(.*)", "dest": "/api/user/UserController.js" }
+  ],
+  "rewrites": [
     {
-      "src": "/api/user/(.*)",
-      "dest": "/api/user/UserController.js"
+      "source": "/api/user",
+      "destination": "/api/user/UserController.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.js"
+      "source": "/api/sticker",
+      "destination": "/api/sticker/StickerController.js"
+    },
+    {
+      "source": "/api/stickerpack",
+      "destination": "/api/stickerpack/StickerpackController.js"
+    },
+    {
+      "source": "/api/other",
+      "destination": "/api/other/OtherController.js"
     }
   ],
   "env": {
