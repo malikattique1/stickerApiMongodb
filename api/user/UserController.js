@@ -2,14 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 
-var db = require('../../db');
-var User = require('./User');
+// var db = require('../../db');
+// var User = require('./User');
 
 
-var jwt = require('jsonwebtoken'); 
-var bcrypt = require('bcryptjs');
-var config = require('../../config'); 
-var VerifyToken = require(__root + 'auth/VerifyToken');
+// var jwt = require('jsonwebtoken'); 
+// var bcrypt = require('bcryptjs');
+// var config = require('../../config'); 
+// var VerifyToken = require(__root + 'auth/VerifyToken');
 
 
 
@@ -59,64 +59,64 @@ router.get('/:id', VerifyToken, function (req, res) {
 
 
 
-// LOGIN
-router.post('/login', function(req, res) {
-  User.findOne({ email: req.body.email }, function (err, user) {
-    if (err) return res.status(500).send('Error on the server.');
-    if (!user) return res.status(404).send('No user found.');
-    var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-    console.log(user.password);
-    console.log(req.body.password);
-    console.log(passwordIsValid);
-    if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
-    var token = jwt.sign({ id: user._id }, config.secret, {
-      // expiresIn: 86400 
-    });
-    res.status(200).send({ auth: true, token: token });
-  });
-});
+// // LOGIN
+// router.post('/login', function(req, res) {
+//   User.findOne({ email: req.body.email }, function (err, user) {
+//     if (err) return res.status(500).send('Error on the server.');
+//     if (!user) return res.status(404).send('No user found.');
+//     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+//     console.log(user.password);
+//     console.log(req.body.password);
+//     console.log(passwordIsValid);
+//     if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
+//     var token = jwt.sign({ id: user._id }, config.secret, {
+//       // expiresIn: 86400 
+//     });
+//     res.status(200).send({ auth: true, token: token });
+//   });
+// });
 
 
 
-// CREATES A NEW USER
-router.post('/register', VerifyToken, function (req, res) {
-    var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-    User.create({
-        name: req.body.name,
-        email: req.body.email,
-        // password : req.body.password
-        password: hashedPassword
-    },
-        function (err, user) {
-            if (err) return res.status(500).send("There was a problem adding the information to the database.");
-            res.status(200).send(user);
-        });
-});
+// // CREATES A NEW USER
+// router.post('/register', VerifyToken, function (req, res) {
+//     var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+//     User.create({
+//         name: req.body.name,
+//         email: req.body.email,
+//         // password : req.body.password
+//         password: hashedPassword
+//     },
+//         function (err, user) {
+//             if (err) return res.status(500).send("There was a problem adding the information to the database.");
+//             res.status(200).send(user);
+//         });
+// });
 
 
 
 
 
-// DELETES A USER FROM THE DATABASE
-router.delete('/:id', VerifyToken, function (req, res) {
-    User.findByIdAndRemove(req.params.id, function (err, user) {
-        // console.log(user);
-        if (err) return res.status(500).send("There was a problem deleting the user.");
-        res.status(200).send("User: " + user.name + " was deleted.");
-    });
-});
+// // DELETES A USER FROM THE DATABASE
+// router.delete('/:id', VerifyToken, function (req, res) {
+//     User.findByIdAndRemove(req.params.id, function (err, user) {
+//         // console.log(user);
+//         if (err) return res.status(500).send("There was a problem deleting the user.");
+//         res.status(200).send("User: " + user.name + " was deleted.");
+//     });
+// });
 
 
-// UPDATES A SINGLE USER IN THE DATABASE
-router.put('/:id', VerifyToken, function (req, res) {
-    var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-    req.body.password = hashedPassword;
-    console.log(req.body)
-    User.findByIdAndUpdate(req.params.id, req.body, { new: true }, function (err, user) {
-        if (err) return res.status(500).send("There was a problem updating the user.");
-        res.status(200).send(user);
-    });
-});
+// // UPDATES A SINGLE USER IN THE DATABASE
+// router.put('/:id', VerifyToken, function (req, res) {
+//     var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+//     req.body.password = hashedPassword;
+//     console.log(req.body)
+//     User.findByIdAndUpdate(req.params.id, req.body, { new: true }, function (err, user) {
+//         if (err) return res.status(500).send("There was a problem updating the user.");
+//         res.status(200).send(user);
+//     });
+// });
 
 
 module.exports = router;
