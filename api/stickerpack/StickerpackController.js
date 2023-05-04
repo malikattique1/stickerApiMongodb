@@ -82,7 +82,7 @@ uploadFile = function (req, res, next) {
             return res.status(400).json({
                 success: 0,
                 message: "only png with less than 50kb size allowed",
-                error: err
+                error: err.message
             });
             // res.send(err);
         } else {
