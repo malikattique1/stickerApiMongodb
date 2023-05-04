@@ -39,8 +39,8 @@ index.get('/api', function (req, res) {
   res.status(200).send('API works.');
 });
 
-// var UserController = require(__root + 'api/user/UserController');
-// index.use('/api/user', UserController);
+var UserController = require(__root + 'api/user/UserController');
+index.use('/api/user', UserController);
 
 // var StickerController = require(__root + 'api/sticker/StickerController');
 // index.use('/api/sticker', StickerController);
