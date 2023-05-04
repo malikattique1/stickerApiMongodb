@@ -45,10 +45,13 @@ const UserController = require("./api/user/UserController");
 index.use('/api/user', UserController);
 
 // var StickerController = require(__root + 'api/sticker/StickerController');
-// index.use('/api/sticker', StickerController);
+var StickerController = require('./api/sticker/StickerController');
+index.use('/api/sticker', StickerController);
 
 // var StickerpackController = require(__root + 'api/stickerpack/StickerpackController');
-// index.use('/api/stickerpack', StickerpackController);
+var StickerpackController = require('./api/stickerpack/StickerpackController');
+index.use('/api/stickerpack', StickerpackController);
+
 
 const port = process.env.PORT
 // index.listen(port, () => {

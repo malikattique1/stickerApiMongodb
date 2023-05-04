@@ -14,8 +14,6 @@ var VerifyToken = require('../../auth/VerifyToken');
 
 
 
-
-
 // GETS ALL THE USERS IN THE DATABASE
 router.get('/', VerifyToken, function (req, res) {
     User.find({}, function (err, users) {
@@ -124,28 +122,5 @@ router.put('/:id', VerifyToken, function (req, res) {
 
 module.exports = router;
 
-
-
-
-
-
-
-// const express = require("express");
-// const router = express.Router();
-
-
-// router.get("/", async (req, res) => {
-//   try {
-//     res.json({
-//       status: 200,
-//       message: "Get data has successfully",
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).send("Server error");
-//   }
-// });
-
-// module.exports = router;
 
 
