@@ -12,6 +12,10 @@
 
   "rewrites": [
     {
+      "src": "/api/(.*)",
+      "dest": "index.js"
+    },
+    {
       "source": "/api/user",
       "destination": "/api/user/UserController.js"
     },
