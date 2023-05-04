@@ -39,7 +39,9 @@ global.__root   = __dirname + '/';
 //   res.status(200).send('API works.');
 // });
 
-var UserController = require(__root + 'api/user/UserController');
+// var UserController = require(__root + 'api/user/UserController');
+// const UserController = require("./api/user/UserController");
+const UserController = require("./api/user/UserController");
 index.use('/api/user', UserController);
 
 // var StickerController = require(__root + 'api/sticker/StickerController');
