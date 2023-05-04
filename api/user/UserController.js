@@ -6,8 +6,9 @@ var db = require('../../db');
 var User = require('./User');
 
 var bcrypt = require('bcryptjs');
-// var jwt = require('jsonwebtoken'); 
-// var config = require('../../config'); 
+var jwt = require('jsonwebtoken'); 
+var config = require('../../config'); 
+var VerifyToken = require('../../auth/VerifyToken');
 // var VerifyToken = require(__root + 'auth/VerifyToken');
 
 
@@ -16,18 +17,18 @@ var bcrypt = require('bcryptjs');
 
 
 // GETS ALL THE USERS IN THE DATABASE
-// router.get('/', VerifyToken, function (req, res) {
-//     User.find({}, function (err, users) {
-//         if (err) return res.status(500).send("There was a problem finding the users.");
-//         res.status(200).send(users);
-//     });
-// });
-router.get('/', function (req, res) {
+router.get('/', VerifyToken, function (req, res) {
     User.find({}, function (err, users) {
         if (err) return res.status(500).send("There was a problem finding the users.");
         res.status(200).send(users);
     });
 });
+// router.get('/', function (req, res) {
+//     User.find({}, function (err, users) {
+//         if (err) return res.status(500).send("There was a problem finding the users.");
+//         res.status(200).send(users);
+//     });
+// });
 // router.get("/", async (req, res) => {
 //     try {
 //       res.json({
