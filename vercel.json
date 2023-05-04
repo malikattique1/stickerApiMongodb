@@ -16,6 +16,18 @@
         "dest": "index.js"
       },
       {
+        "src": "/api/sticker/(.*)",
+        "dest": "index.js"
+      },
+      {
+        "src": "/api/stickerpack/(.*)",
+        "dest": "index.js"
+      },
+      {
+        "src": "/api/user/(.*)",
+        "dest": "index.js"
+      },
+      {
         "src": "/(.*)",
         "dest": "index.js"
       }
