@@ -40,8 +40,8 @@ index.get('/api', function (req, res) {
 });
 
 // var UserController = require(__root + 'api/user/UserController');
-const UserController = require("./api/user/UserController");
-const UserController = require("./api/UserController");
+// const UserController = require("./api/user/UserController");
+// const UserController = require("./api/UserController");
 
 // index.use('/api/UserController', UserController);
 
