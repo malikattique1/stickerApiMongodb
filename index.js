@@ -1,9 +1,7 @@
 // require("dotenv").config();
 require('dotenv').config({ path: './config.env' });
-// import mongoose from "mongoose";
-var mongoose = require('mongoose');
-// import "dotenv/config";
 
+var mongoose = require('mongoose');
 
 
 var express = require('express');
@@ -42,7 +40,6 @@ index.get('/api', function (req, res) {
 });
 
 // var UserController = require(__root + 'api/user/UserController');
-// const UserController = require("./api/user/UserController");
 const UserController = require("./api/user/UserController");
 index.use('/api/user', UserController);
 

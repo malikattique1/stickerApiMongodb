@@ -21,17 +21,6 @@ router.get('/', VerifyToken, function (req, res) {
         res.status(200).send(users);
     });
 });
-// router.get("/", async (req, res) => {
-//     try {
-//       res.json({
-//         status: 200,
-//         message: "Get data has successfully",
-//       });
-//     } catch (error) {
-//       console.error(error);
-//       return res.status(500).send("Server error");
-//     }
-//   });
 
 
 // GETS A SINGLE USER FROM THE DATABASE
