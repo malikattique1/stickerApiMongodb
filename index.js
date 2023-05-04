@@ -41,7 +41,9 @@ index.get('/api', function (req, res) {
 
 // var UserController = require(__root + 'api/user/UserController');
 const UserController = require("./api/user/UserController");
-index.use('/api/user/UserController', UserController);
+const UserController = require("./api/UserController");
+
+index.use('/api/UserController', UserController);
 
 // var StickerController = require(__root + 'api/sticker/StickerController');
 // index.use('/api/sticker', StickerController);
