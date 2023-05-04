@@ -1,22 +1,24 @@
-
 {
-  "name": "nodejs-creating-restful-apis",
   "version": 2,
-  "routes": [
-    { "handle": "server", "src": "/(.*)" }
-  ],
-  "functions": {
-    "server": {
-      "memory": 512,
-      "maxDuration": 10,
-      "runtime": "vercel-node@16",
-      "environment": {
-        "MONGO_URI": "mongodb+srv://attiqueurrehmannew12:5251050@cluster0.ifmxcrl.mongodb.net/Stickerapp?retryWrites=true&w=majority"
-      },
-      "includeFiles": [
-        "api/**/*",
-        "index.js"
-      ]
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
+    }
+  ],
+  "env": {
+    "MONGO_URI": "mongodb+srv://attiqueurrehmannew12:5251050@cluster0.ifmxcrl.mongodb.net/Stickerapp?retryWrites=true&w=majority",
+    "PORT": "6000"
   }
 }
+
