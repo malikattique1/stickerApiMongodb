@@ -48,13 +48,18 @@ router.post('/register', VerifyToken, function (req, res) {
 
 
 // GETS ALL THE USERS IN THE DATABASE
-router.get('/', VerifyToken, function (req, res) {
+// router.get('/', VerifyToken, function (req, res) {
+//     User.find({}, function (err, users) {
+//         if (err) return res.status(500).send("There was a problem finding the users.");
+//         res.status(200).send(users);
+//     });
+// });
+router.get('/', function (req, res) {
     User.find({}, function (err, users) {
         if (err) return res.status(500).send("There was a problem finding the users.");
         res.status(200).send(users);
     });
 });
-
 
 // GETS A SINGLE USER FROM THE DATABASE
 router.get('/:id', VerifyToken, function (req, res) {
