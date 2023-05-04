@@ -1,3 +1,9 @@
+
+
+
+
+
+
 {
   "version": 2,
   "builds": [
@@ -8,17 +14,24 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "index.js"
+      "src": "/api/user/(.*)",
+      "dest": "/api/user/:1"
+    },
+    {
+      "src": "/api/sticker/(.*)",
+      "dest": "/api/sticker/:1"
+    },
+    {
+      "src": "/api/stickerpack/(.*)",
+      "dest": "/api/stickerpack/:1"
     },
     {
       "src": "/(.*)",
-      "dest": "index.js"
+      "dest": "/"
     }
   ],
   "env": {
     "MONGO_URI": "mongodb+srv://attiqueurrehmannew12:5251050@cluster0.ifmxcrl.mongodb.net/Stickerapp?retryWrites=true&w=majority",
-    "PORT": "6000"
+    "PORT": 6000
   }
 }
-
