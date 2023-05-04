@@ -10,21 +10,6 @@
       {
           "src": "/(.*)",
           "dest": "/"
-      },
-      {
-        "src": "/api/upload",
-        "methods": ["POST"],
-        "dest": "/api/upload"
       }
-  ],
-  "env": {
-    "MAX_FILE_SIZE": "50000000",
-    "UPLOAD_DIR": "public/uploads"
-  },
-  "functions": {
-    "api/upload": {
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  }
+  ]
 }
