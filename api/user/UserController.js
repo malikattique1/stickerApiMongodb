@@ -48,29 +48,29 @@ router.post('/register', VerifyToken, function (req, res) {
 
 
 // GETS ALL THE USERS IN THE DATABASE
-router.get('/', VerifyToken, function (req, res) {
-    User.find({}, function (err, users) {
-        if (err) return res.status(500).send("There was a problem finding the users.");
-        res.status(200).send(users);
-    });
-});
+// router.get('/', VerifyToken, function (req, res) {
+//     User.find({}, function (err, users) {
+//         if (err) return res.status(500).send("There was a problem finding the users.");
+//         res.status(200).send(users);
+//     });
+// });
 // router.get('/', function (req, res) {
 //     User.find({}, function (err, users) {
 //         if (err) return res.status(500).send("There was a problem finding the users.");
 //         res.status(200).send(users);
 //     });
 // });
-// router.get("/", async (req, res) => {
-//     try {
-//       res.json({
-//         status: 200,
-//         message: "Get data has successfully",
-//       });
-//     } catch (error) {
-//       console.error(error);
-//       return res.status(500).send("Server error");
-//     }
-//   });
+router.get("/", async (req, res) => {
+    try {
+      res.json({
+        status: 200,
+        message: "Get data has successfully",
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Server error");
+    }
+  });
 
 
 // GETS A SINGLE USER FROM THE DATABASE
