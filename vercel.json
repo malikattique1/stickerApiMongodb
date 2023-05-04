@@ -16,6 +16,10 @@
 
   "rewrites": [
     {
+      "src": "/api",
+      "dest": "index.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "index.js"
     },
@@ -23,10 +27,7 @@
       "src": "/(.*)",
       "dest": "/"
     },
-    {
-      "src": "/api",
-      "dest": "index.js"
-    },
+  
     {
       "src": "/api/(.*)",
       "dest": "index.js"
