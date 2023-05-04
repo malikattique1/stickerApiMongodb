@@ -4,6 +4,7 @@ require('dotenv').config({ path: './config.env' });
 var mongoose = require('mongoose');
 // import "dotenv/config";
 
+mongoose.set('strictQuery', false);
 
 
 var express = require('express');
