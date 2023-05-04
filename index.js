@@ -35,9 +35,9 @@ index.use(function(req, res, next) {
 
 
 global.__root   = __dirname + '/'; 
-// index.use('/api', function (req, res) {
-//   res.status(200).send('API works.');
-// });
+index.use('/api', function (req, res) {
+  res.status(200).send('API works.');
+});
 
 // var UserController = require(__root + 'api/user/UserController');
 // const UserController = require("./api/user/UserController");
