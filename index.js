@@ -4,7 +4,6 @@ require('dotenv').config({ path: './config.env' });
 var mongoose = require('mongoose');
 // import "dotenv/config";
 
-mongoose.set('strictQuery', false);
 
 
 var express = require('express');
@@ -36,7 +35,7 @@ index.use(function(req, res, next) {
 
 
 global.__root   = __dirname + '/'; 
-index.get('/', function (req, res) {
+index.use('/api', function (req, res) {
   res.status(200).send('API works.');
 });
 
