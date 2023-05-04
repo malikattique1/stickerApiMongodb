@@ -1,36 +1,33 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "api/**",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "./index.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "index.js"
-      },
-      {
-        "src": "/api/sticker/(.*)",
-        "dest": "index.js"
-      },
-      {
-        "src": "/api/stickerpack/(.*)",
-        "dest": "index.js"
-      },
-      {
-        "src": "/api/user/(.*)",
-        "dest": "index.js"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "index.js"
-      }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/.*",
+      "dest": "index.js"
+    }
+  ],
+  "env": {
+    "MONGO_URI": "mongodb+srv://attiqueurrehmannew12:5251050@cluster0.ifmxcrl.mongodb.net/Stickerapp?retryWrites=true&w=majority",
+    "PORT": "6000"
+  },
+  "functions": {
+    "api/user/*": {
+      "memory": 512,
+      "timeout": 10
+    },
+    "api/sticker/*": {
+      "memory": 512,
+      "timeout": 10
+    },
+    "api/stickerpack/*": {
+      "memory": 512,
+      "timeout": 10
+    }
   }
-  
+}
