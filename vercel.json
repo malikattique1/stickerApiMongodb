@@ -10,6 +10,10 @@
       {
           "src": "/(.*)",
           "dest": "/"
+      },
+      {
+        "src": "/api/user",
+        "dest": "/api/user/UserController.js"
       }
   ]
 }
