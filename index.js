@@ -36,7 +36,10 @@ index.use(function(req, res, next) {
 
 global.__root   = __dirname + '/'; 
 index.use('/api', function (req, res) {
-  res.status(200).send('API works.');
+  res.json({
+    status: 200,
+    message: "api successfully",
+  });
 });
 
 // var UserController = require(__root + 'api/user/UserController');
