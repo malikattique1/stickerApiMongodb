@@ -1,6 +1,15 @@
 // require("dotenv").config();
 require('dotenv').config({ path: './config.env' });
 
+
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+
 var mongoose = require('mongoose');
 
 
@@ -10,6 +19,10 @@ var index= express();
 index.use(express.json());
 const bodyParser = require('body-parser');
 index.use(bodyParser.urlencoded({ extended: true })); 
+
+const fileUpload = require('express-fileupload');
+index.use(fileUpload());
+
 
 const path = require('path');
 index.use('/upload', express.static(path.join(__dirname, 'upload')))
@@ -50,6 +63,25 @@ index.use('/api/sticker', StickerController);
 // var StickerpackController = require(__root + 'api/stickerpack/StickerpackController');
 var StickerpackController = require('./api/stickerpack/StickerpackController');
 index.use('/api/stickerpack', StickerpackController);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const port = process.env.PORT
