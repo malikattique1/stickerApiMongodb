@@ -118,7 +118,7 @@ router.post('/', VerifyToken, uploadFile, async function (req, res) {
         for (const file of posterIcons) {
 
             const dimensions = sizeOf(file.buffer);
-            console.log("dimensions", dimensions)
+            // console.log("dimensions", dimensions)
             if (dimensions.width < 100 || dimensions.height < 100) {
                 throw new Error('Image dimensions must be greater than 100x100');
             }
