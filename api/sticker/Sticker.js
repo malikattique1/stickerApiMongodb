@@ -5,23 +5,15 @@ var StickerSchema = new mongoose.Schema({
   stickerpack_id: String,
   user_id: String,
   privacy: String,
-  // sticker_path: String,
-//   sticker_path: {
-//     public_id: {
-//         type: String,
-//     },
-//     url: {
-//         type: String,
-//     }
-// },
-sticker_path: [{
-  public_id: {
-      type: String,
-  },
-  url: {
-      type: String,
-  }
-}],
+  sticker_path: String,
+// sticker_path: [{
+//   public_id: {
+//       type: String,
+//   },
+//   url: {
+//       type: String,
+//   }
+// }],
   country: String,
   pack_order: String,
   is_paid: String,
