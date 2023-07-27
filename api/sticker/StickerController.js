@@ -10,109 +10,104 @@ var VerifyToken = require(__root + 'auth/VerifyToken');
 const cloudinary = require('cloudinary');
 const sizeOf = require('image-size');
 
-// router.post('/', VerifyToken, function (req, res) {
-//     Sticker.create({
-//         name: req.body.name,
-//         stickerpack_id: req.body.name,
-//         user_id: req.body.user_id,
-//         privacy: req.body.privacy,
-//         sticker_path: req.body.sticker_path,
-//         country: req.body.country,
-//         pack_order: req.body.pack_order,
-//         is_paid: req.body.is_paid,
-//         tags_sticker: req.body.tags_sticker
 
+const multer = require("multer");
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         if (file.fieldname === "sticker_path") {
+//             let dir = `./upload/sticker`;
+//             const fs = require('fs');
+//             if (!fs.existsSync(dir)) {
+//                 fs.mkdirSync(dir, {
+//                     recursive: true
+//                 });
+//             }
+//             cb(null, './upload/sticker');
+//         }     
 //     },
-//         function (err, results) {
-//             // console.log(results);
-//             if (err) return res.status(500).send("There was a problem adding the information to the database.");
-//             res.status(200).send(results);
-//         });
+//     filename: (req, file, cb) => {
+//         if (file.fieldname === "tray_icon") {
+//             return cb(null, `${file.fieldname}_${Date.now()}_${file.originalname}`)
+//         }
+//         else if (file.fieldname === "poster_icon") {
+//             return cb(null, `${file.fieldname}_${Date.now()}_${file.originalname}`)
+//         }
+//     }
 // });
 
 
+const storage = multer.memoryStorage();
+const upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        if (file.mimetype !== "image/webp") {
+            return cb(new Error('Files must be webp'));
+        }
+        cb(null, true);
+    },
+    limits: {
+        fileSize: 1024 * 1024, // 1MB limit
+    },
+}).fields([
+    { name: 'sticker_path', maxCount: 50 },
+]);
 
+const uploadFile = async function (req, res, next) {
+    upload(req, res, function (err) {
+        if (!req.files || !req.files['sticker_path']) {
+            return res.status(400).json({ error: 'No stickers provided' });
+        }
+        if (err) {
+            console.log(err);
+            return res.status(400).json({
+                success: 0,
+                message: "File upload failed",
+                error: err.message,
+            });
+        }
+        next();
+    });
+};
 
 
 // CREATE STICKERS (Single or Multiple)
-router.post('/', VerifyToken, async function (req, res) {
+router.post("/", VerifyToken, uploadFile, async function (req, res) {
     try {
-        async function processSingleFile(sticker_file) {
-            if (sticker_file.size > 1024 * 1024) {
-                throw new Error('File size exceeds the limit of 1MB');
-            }
-            if (sticker_file.mimetype !== "image/webp") {
-                throw new Error('Files must be webp');
-            }
+        const files = req.files;
 
-            const dimensions = sizeOf(sticker_file.data);
-            if (dimensions.width < 50 || dimensions.height < 50) {
-                throw new Error('Image dimensions must be greater than 50x50');
-            }
+        // for Local storage
+        // const file1 = file['sticker_path'][0] // single img
+        // const fullUrl = `${req.protocol}://${req.headers.host}/`;
+        // let hostpath = fullUrl;
+        // const stickericondirectory = hostpath + 'upload/sticker' + '/' + file1.filename
 
-            const dataURL = `data:${sticker_file.mimetype};base64,${sticker_file.data.toString('base64')}`;
-            const myCloud = await cloudinary.uploader.upload(dataURL, {
+        //for cloudinary storage
+        const stickersData = [];
+        for (const file of files['sticker_path']) {
+            const dimensions = sizeOf(file.buffer);
+            console.log("dimensions", dimensions)
+            if (dimensions.width < 100 || dimensions.height < 100) {
+                throw new Error('Image dimensions must be greater than 100x100');
+            }
+            const dataURL = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+            const cloudinaryUploadResult = await cloudinary.uploader.upload(dataURL, {
                 folder: "stickerapp/upload/sticker",
             });
-            // return {
-            //     public_id: myCloud.public_id,
-            //     url: myCloud.secure_url,
-            // };
-            return myCloud.secure_url
-        }
-
-        const stickerArray = req.files['sticker_path'];
-        const isMultipleStickers = Array.isArray(stickerArray);
-
-        if (!stickerArray) {
-            return res.status(400).json({ error: 'No stickers provided' });
-        }
-
-        const postData = [];
-
-        if (isMultipleStickers) {
-            // NOT Allowing multiple stickers
-            // throw new Error('Multiple stickers upload is not allowed');
-
-            // Allowing multiple stickers
-            for (const sticker_file of stickerArray) {
-                const fileData = await processSingleFile(sticker_file);
-
-                const stickerPostData = {
-                    name: req.body.name,
-                    stickerpack_id: req.body.name,
-                    user_id: req.body.user_id,
-                    privacy: req.body.privacy,
-                    sticker_path: fileData,
-                    country: req.body.country,
-                    pack_order: req.body.pack_order,
-                    is_paid: req.body.is_paid,
-                    tags_sticker: req.body.tags_sticker,
-                };
-
-                postData.push(stickerPostData);
-            }
-        } else {
-            // Process single sticker
-            const sticker_file = stickerArray;
-            const fileData = await processSingleFile(sticker_file);
-
-            const stickerPostData = {
+            const stickericondirectory = cloudinaryUploadResult.secure_url;
+            const stickerData = {
                 name: req.body.name,
                 stickerpack_id: req.body.name,
                 user_id: req.body.user_id,
                 privacy: req.body.privacy,
-                sticker_path: fileData,
+                sticker_path: stickericondirectory,
                 country: req.body.country,
                 pack_order: req.body.pack_order,
                 is_paid: req.body.is_paid,
                 tags_sticker: req.body.tags_sticker,
             };
-
-            postData.push(stickerPostData);
+            stickersData.push(stickerData);
         }
-
-        const posts = await Sticker.create(postData);
+        const posts = await Sticker.create(stickersData);
         return res.status(200).json({
             success: 1,
             data: posts
@@ -122,9 +117,6 @@ router.post('/', VerifyToken, async function (req, res) {
         return res.status(400).json({ error: error.message });
     }
 });
-
-
-
 
 
 

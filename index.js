@@ -20,8 +20,8 @@ index.use(express.json());
 const bodyParser = require('body-parser');
 index.use(bodyParser.urlencoded({ extended: true })); 
 
-const fileUpload = require('express-fileupload');
-index.use(fileUpload());
+// const fileUpload = require('express-fileupload');
+// index.use(fileUpload());
 
 
 const path = require('path');

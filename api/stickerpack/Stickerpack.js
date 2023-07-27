@@ -4,7 +4,12 @@ var StickerpackSchema = new mongoose.Schema({
   name: String,
   owner: String,
   privacy: String,
-  tray_icon: String,
+  // tray_icon: String,
+  tray_icon: [{
+  url: {
+      type: String,
+  }
+}],
   country: String,
   poster_icon: String,
   pack_category: String,
